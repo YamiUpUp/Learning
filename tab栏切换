@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .tab {
+        width: 978px;
+        margin: 100px auto;
+        /* position: relative; */
+      }
+
+      .tab-list{
+                      height: 40px;
+                      border: 1px solid #ccc;
+                      background-color: #f1f1f1;
+      } /*一定要写，不然item内容不会另起一行 */
+
+      .tab-list li {
+        float: left;
+        cursor: pointer; /*cursor：pointer设定鼠标的形状为一只伸出食指的手，这也是绝大多数浏览器里面鼠标停留在网页链接上方时候的样式 */
+        height: 40px;
+        line-height: 40px;
+        padding: 0 20px;
+        text-align: center;
+        list-style-type: none; /* 去除li的. 图标 */
+      }
+      .tab-list .current {
+        background-color: #c81623;
+        color: white;
+      }
+      .item {
+        display: none;
+      }
+      /* .tab .tab-con {
+        position: absolute;
+        top: 50px;
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="tab">
+      <div class="tab-list">
+        <ul>
+          <li class="current">商品介绍</li>
+          <li>规格与包装</li>
+          <li>售后保障</li>
+          <li>商品评价</li>
+          <li>手机社区</li>
+        </ul>
+      </div>
+      <div class="tab-con">
+        <div class="item" style="display: block">
+                商品介绍模块内容
+       </div>
+        <div class="item"> 规格与包装模块内容</div>
+        <div class="item">售后保障模块内容</div>
+        <div class="item">商品评价模块内容</div>
+        <div class="item">手机社区模块内容</div>                
+      </div>
+    </div>
+
+    <script>
+      var lis = document.querySelector(".tab-list").querySelectorAll("li");
+      var items = document.querySelector('.tab-con').querySelectorAll('.item');
+
+
+      // for循环绑定点击
+      for (var i = 0; i < lis.length; i++) {
+        lis[i].setAttribute('index',i);
+        lis[i].onclick = function () {
+          // 其余的li清除class 这个类 ,即没有任何样式
+          
+          for (var i = 0; i < lis.length; i++) {
+                          lis[i].className = '';
+          }
+
+          // 留下自己
+          this.className = 'current';
+
+          var index = this.getAttribute('index');
+          for (var i = 0; i < items.length; i++) {
+                    items[i].style.display = 'none';
+                }
+          items[index].style.display = 'block';
+        };
+      }
+    </script>
+  </body>
+</html>
